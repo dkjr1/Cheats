@@ -30,4 +30,5 @@ forever(function () {
     if (Is_slo_mo_active) {
         Slo_mo_step(image.screenImage())
     }
+    pause(0)
 })
