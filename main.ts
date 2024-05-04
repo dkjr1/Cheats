@@ -1,6 +1,13 @@
 function Slomo_on_off () {
-	
+    Is_slo_mo_active = !(Is_slo_mo_active)
 }
+function Slo_mo_step (Screenbeforeslomo: Image) {
+    game.pushScene()
+scene.setBackgroundImage(Screenbeforeslomo)
+    pause(0)
+    game.popScene()
+}
+let Is_slo_mo_active = false
 scene.systemMenu.addEntry(() => "SLO-MO", Slomo_on_off, img`
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
@@ -19,3 +26,8 @@ scene.systemMenu.addEntry(() => "SLO-MO", Slomo_on_off, img`
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
 `);
+forever(function () {
+    if (Is_slo_mo_active) {
+        Slo_mo_step(image.screenImage())
+    }
+})
